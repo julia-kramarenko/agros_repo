@@ -5,6 +5,7 @@ using agros_repo.Helpers;
 using agros_repo.ApiClient;
 using agros_repo.ApiModels;
 using agros_repo.Models;
+using System.Linq;
 
 [Binding]
 public class BillCalculationSteps
@@ -26,7 +27,7 @@ public class BillCalculationSteps
         _apiClient = new ApiClient(baseUrl);
     }
 
-    [Given(@"a group of (.*) people order")]
+    [Given(@"A group of (.*) people order")]
     public void GivenAGroupOfPeopleOrder(int numberOfPeople, Table table)
     {
         _numberOfPeople = numberOfPeople;
@@ -46,8 +47,8 @@ public class BillCalculationSteps
         _expectedTotal = TotalPriceCalculator.CalculateTotal(_order);
     }
 
-    [Given(@"a group of (.*) people is joined and order")]
-    public void GivenGroupPeopleJoinedAndOrdered(int numberOfPeople, Table table)
+    [When(@"A group of (.*) people is joined and order")]
+    public void WhenAGroupOfPeopleIsJoinedAndOrder(int numberOfPeople, Table table)
     {
         if (_order == null)
             throw new InvalidOperationException("Order must be initialized before adding items.");
@@ -96,14 +97,14 @@ public class BillCalculationSteps
         _expectedTotal = TotalPriceCalculator.CalculateTotal(_order);
     }
 
-    [When(@"the bill is requested via the endpoint")]
+    [When(@"The bill is requested via the endpoint")]
     public async Task WhenTheBillIsRequestedViaTheEndpoint()
     {
         var request = _order!.ToOrderRequest();
         _billResponse = await _apiClient.PostAndDeserializeAsync<OrderRequest, BillResponse>("/calculate-bill", request);
     }
 
-    [Then(@"the calculated sum of bill is correct in the response")]
+    [Then(@"The calculated sum of bill is correct in the response")]
     public void ThenTheCalculatedSumOfBillIsCorrectInTheResponse()
     {
         Assert.That(_billResponse, Is.Not.Null, "Bill response was null.");

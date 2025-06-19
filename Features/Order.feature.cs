@@ -98,7 +98,7 @@ namespace agros_repo.Features
                             "4",
                             "4",
                             string.Format("{0}", isBefore7Pm)});
-                testRunner.Given("a group of 4 people order", ((string)(null)), table1, "Given ");
+                testRunner.Given("A group of 4 people order", ((string)(null)), table1, "Given ");
                 testRunner.When("The bill is requested via the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
                 testRunner.Then("The calculated sum of bill is correct in the response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
             }
@@ -130,7 +130,7 @@ namespace agros_repo.Features
                             "2",
                             "2",
                             "true"});
-                testRunner.Given("a group of 2 people order", ((string)(null)), table2, "Given ");
+                testRunner.Given("A group of 2 people order", ((string)(null)), table2, "Given ");
                 testRunner.When("The bill is requested via the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
                 testRunner.Then("The calculated sum of bill is correct in the response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
                 TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
@@ -143,7 +143,7 @@ namespace agros_repo.Features
                             "2",
                             "2",
                             "true"});
-                testRunner.When("a group of 2 people is joined and order", ((string)(null)), table3, "When ");
+                testRunner.When("A group of 2 people is joined and order", ((string)(null)), table3, "When ");
                 testRunner.When("The bill is requested via the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
                 testRunner.Then("The calculated sum of bill is correct in the response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
             }
@@ -178,7 +178,7 @@ namespace agros_repo.Features
                             "1",
                             "4",
                             string.Format("{0}", isBefore7Pm)});
-                testRunner.Given("a group of 4 people order", ((string)(null)), table4, "Given ");
+                testRunner.Given("A group of 4 people order", ((string)(null)), table4, "Given ");
                 testRunner.When("The bill is requested via the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
                 testRunner.Then("The calculated sum of bill is correct in the response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
                 TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
