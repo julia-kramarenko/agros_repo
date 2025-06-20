@@ -23,3 +23,8 @@ This project provides a simple C# framework for covering with BDD Gherkin format
 2. Open VSC -> build project: dotnet build;
 3. To run features: dotnet test
 
+   ### TODO
+   1. Need to add Linter to check code before pushing new changes;
+   2. Need to add reporter;
+   3. Implement CI/CD;
+
