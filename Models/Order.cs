@@ -32,7 +32,6 @@ namespace agros_repo.Models
             }
         }
 
-
         public OrderRequest ToOrderRequest()
         {
             var orderItemsDto = new List<MenuItemDto>();

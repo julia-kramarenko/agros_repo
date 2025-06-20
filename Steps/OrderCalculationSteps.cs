@@ -8,7 +8,7 @@ using agros_repo.Models;
 using System.Linq;
 
 [Binding]
-public class BillCalculationSteps
+public class OrderCalculationSteps
 {
     private int _numberOfPeople;
     private int _starters;
@@ -18,10 +18,10 @@ public class BillCalculationSteps
     private decimal _expectedTotal;
 
     private Order? _order;
-    private BillResponse? _billResponse;
+    private OrderResponse? _orderResponse;
     private readonly ApiClient _apiClient;
 
-    public BillCalculationSteps()
+    public OrderCalculationSteps()
     {
         var baseUrl = ConfigReader.GetBaseUrl();
         _apiClient = new ApiClient(baseUrl);
@@ -93,25 +93,25 @@ public class BillCalculationSteps
         _order.RemoveItems("Main", cancelMains);
         _order.RemoveItems("Drink", cancelDrinks);
 
-        // Recalculate expected total after removal
+        // Recalculate expected total after removing some items from order
         _expectedTotal = TotalPriceCalculator.CalculateTotal(_order);
     }
 
+    //I imagine that OrderRequest parameters for POST endpoint is like JSON {item: price}
     [When(@"The bill is requested via the endpoint")]
     public async Task WhenTheBillIsRequestedViaTheEndpoint()
     {
         var request = _order!.ToOrderRequest();
-        _billResponse = await _apiClient.PostAndDeserializeAsync<OrderRequest, BillResponse>("/calculate-bill", request);
+        _orderResponse = await _apiClient.PostAndDeserializeAsync<OrderRequest, OrderResponse>("/order/calculate", request);
     }
 
     [Then(@"The calculated sum of bill is correct in the response")]
     public void ThenTheCalculatedSumOfBillIsCorrectInTheResponse()
     {
-        Assert.That(_billResponse, Is.Not.Null, "Bill response was null.");
-        Assert.That(_billResponse!.Total, Is.EqualTo(_expectedTotal), "Total bill does not match expected.");
+        Assert.That(_orderResponse, Is.Not.Null, "Bill response was null.");
+        Assert.That(_orderResponse!.Total, Is.EqualTo(_expectedTotal), "Total price does not match expected.");
     }
 
-    // 👇 Helper method placed at the end of the class
     private (decimal Starter, decimal Main, decimal Drink) GetPricesWithDiscount()
     {
         var prices = ConfigReader.GetMenuPrices();
