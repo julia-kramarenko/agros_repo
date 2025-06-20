@@ -21,5 +21,5 @@ This project provides a simple C# framework for covering with BDD Gherkin format
    ```bash
    git clone git@github.com:julia-kramarenko/agros_repo.git
 2. Open VSC -> build project: dotnet build;
-3. To run features: dotnet test agros_repo.csproj
+3. To run features: dotnet test
 
